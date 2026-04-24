@@ -1,14 +1,27 @@
-# astrbot-plugin-helloworld
+# astrbot_plugin_gemini_thinks_filtering
 
-AstrBot 插件模板 / A template plugin for AstrBot plugin feature
+打印 AstrBot 已提取到 `LLMResponse.reasoning_content` 的思考内容。
 
-> [!NOTE]
-> This repo is just a template of [AstrBot](https://github.com/AstrBotDevs/AstrBot) Plugin.
-> 
-> [AstrBot](https://github.com/AstrBotDevs/AstrBot) is an agentic assistant for both personal and group conversations. It can be deployed across dozens of mainstream instant messaging platforms, including QQ, Telegram, Feishu, DingTalk, Slack, LINE, Discord, Matrix, etc. In addition, it provides a reliable and extensible conversational AI infrastructure for individuals, developers, and teams. Whether you need a personal AI companion, an intelligent customer support agent, an automation assistant, or an enterprise knowledge base, AstrBot enables you to quickly build AI applications directly within your existing messaging workflows.
+## 说明
 
-# Supports
+这个插件不解析 `<think>` 标签。
 
-- [AstrBot Repo](https://github.com/AstrBotDevs/AstrBot)
-- [AstrBot Plugin Development Docs (Chinese)](https://docs.astrbot.app/dev/star/plugin-new.html)
-- [AstrBot Plugin Development Docs (English)](https://docs.astrbot.app/en/dev/star/plugin-new.html)
+它直接读取：
+
+```python
+resp.reasoning_content
+```
+
+所以只要某个 provider 已经把思考内容标准化到这个字段，插件就能打印。
+
+## 用途
+
+- 查看被框架隐藏的思考内容
+- 调试 provider 是否正确提取 reasoning
+- 观察模型真实思考输出
+
+
+## 限制
+
+- 只打印日志，不主动发送给用户
+- 依赖 provider 已写入 `resp.reasoning_content`
