@@ -1,4 +1,4 @@
-# astrbot_plugin_gemini_thinks_filtering
+# astrbot_plugin_reasoning_logger
 
 打印 AstrBot 已提取到 `LLMResponse.reasoning_content` 的思考内容。
 
